@@ -1,5 +1,14 @@
 namespace com;
 
+using { 
+    cuid, 
+    managed,
+    Country,
+    Currency,
+    sap.common.CodeList
+     } from '@sap/cds/common';
+
+
 // Define Types--> 
 
 type Genre : Integer enum {
@@ -11,31 +20,35 @@ type noOfBooks : Integer;
 
 type Price {
     amount : Decimal;
-    currency : String(3);
+    currency : Currency;
 }
 
 
 // Define Entities--> 
 
-define entity Authors {
-    key ID          : UUID;
-        name        : String(100);
-        books       : Association to many Books on books.author = $self;
-        dateOfBirth : Date;
-        dateOfDeath : Date;
-};
 
-entity Books  {
-    key ID          : UUID; 
-    title           : String(100);
+entity Books: cuid, managed  {
+    title           : localized String(255);
     author          : Association to Authors;
     genre           : Genre;
-    publCountry     : String(3);
+    publCountry     : Country;
     stock           : noOfBooks;
     price           : Price;
     isHardCover     : Boolean;
 };
 
+entity Authors : cuid, managed{
+        name        : String(100);
+        dateOfBirth : Date;
+        dateOfDeath : Date;
+        epoch       : Association to Epoches;
+        books       : Association to many Books 
+                        on books.author = $self;
 
+};
+
+entity Epoches : CodeList {
+    key ID          : Integer;
+}
 
 
