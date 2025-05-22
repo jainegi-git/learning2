@@ -6,37 +6,46 @@
 
 ### ------------------------------------------------------------------------
 # Get Service Document
-GET {{baseUrl}}/admin
+GET {{baseUrl}}/cat
 
 
 ### ------------------------------------------------------------------------
 # Get Service Metadata Document
-GET {{baseUrl}}/admin/$metadata
+GET {{baseUrl}}/cat/$metadata
 
 
 ### ------------------------------------------------------------------------
 # Get all books with language en
-# with inlined publication country and currency
-GET {{baseUrl}}/admin/Books?$expand=publCountry,price_currency
+GET {{baseUrl}}/cat/Books
 Accept-Language: en
 
 
 ### ------------------------------------------------------------------------
 # Get all books with language de
-# with inlined publication country and currency
-GET {{baseUrl}}/admin/Books?$expand=publCountry,price_currency
+GET {{baseUrl}}/cat/Books
 Accept-Language: de
 
 
 ### ------------------------------------------------------------------------
 # Get all authors with language en
-# with inlined epoch
-GET {{baseUrl}}/admin/Authors?$expand=epoch
+GET {{baseUrl}}/cat/Authors
 Accept-Language: en
 
 
 ### ------------------------------------------------------------------------
 # Get all authors with language de
-# with inlined epoch
-GET {{baseUrl}}/admin/Authors?$expand=epoch
+GET {{baseUrl}}/cat/Authors
 Accept-Language: de
+
+
+### ------------------------------------------------------------------------
+# Create a new author
+
+POST {{baseUrl}}/cat/Authors
+Content-Type: application/json
+{
+  "name": "Friedrich Schiller",
+  "dateOfBirth": "1759-11-10",
+  "dateOfDeath": "1805-05-09",
+  "epoch": {"ID": 120}
+}

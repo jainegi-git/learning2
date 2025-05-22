@@ -25,30 +25,34 @@ type Price {
 
 
 // Define Entities--> 
-
+entity Epoches : CodeList {
+    key ID          : Integer;
+};
 
 entity Books: cuid, managed  {
-    title           : localized String(255);
-    author          : Association to Authors;
-    genre           : Genre;
+    title           : localized String(255) @mandatory;
+    author          : Association to Authors @mandatory @assert.target;
+    genre           : Genre @assert.range: true;
     publCountry     : Country;
-    stock           : noOfBooks;
+    stock           : noOfBooks default 0;
     price           : Price;
     isHardCover     : Boolean;
 };
 
-entity Authors : cuid, managed{
+entity Authors : cuid, managed{ @mandatory
         name        : String(100);
         dateOfBirth : Date;
         dateOfDeath : Date;
-        epoch       : Association to Epoches;
+        epoch       : Association to Epoches @assert.target;
         books       : Association to many Books 
                         on books.author = $self;
 
 };
 
-entity Epoches : CodeList {
-    key ID          : Integer;
-}
+annotate Books with {
+    modifiedAt @odata.etag
+};
 
-
+annotate Authors with{
+    modifiedAt @odata.etag
+} ;
