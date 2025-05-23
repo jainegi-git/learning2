@@ -31,17 +31,17 @@ class catalogService extends cds.ApplicationService{
         const { book , quantity } = req.data;
 
         if(quantity < 1 ) {
-            return req.error('The Quantity must be atleast 1.');            
+            return req.error('INVALID_QUANTITY');            
         }
         const b = await SELECT.one.from(Books).where({ ID : book }).columns( b => { b.stock });
         if (!b) {
-            return req.error('Book with ID ${ book } does not exist.' );
+            return req.error('BOOK_NOT_FOUND', [book]);
         }
 
         let { stock } = b;
 
         if( quantity > stock ) {
-            return req.error('${ quantity } exceeds the stock ${stock} for book id ${book}.');
+            return req.error('ORDER_EXCEED_STOCK',[quantity, stock, book]);
         }
 
         await UPDATE(Books).where({ID : book}).with({stock : { '-=': quantity }});
