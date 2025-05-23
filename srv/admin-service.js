@@ -4,7 +4,7 @@ const cds = require('@sap/cds');
 class AdminService extends cds.ApplicationService{
 
     init() {
-
+ 
         const { Authors } =  this.entities;
         this.before
         ( 

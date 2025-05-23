@@ -26,4 +26,6 @@ entity Books as projection on db.Books {
     author
 };
 
+action submitOrder( book : db.Books:ID , quantity : Integer) returns {
+    stock : db.Books:stock };
 }
