@@ -43,9 +43,10 @@ Accept-Language: de
 
 POST {{baseUrl}}/cat/Authors
 Content-Type: application/json
+
 {
-  "name": "Friedrich Schiller",
-  "dateOfBirth": "1759-11-10",
-  "dateOfDeath": "1805-05-09",
-  "epoch": {"ID": 120}
+  "name"        : "Friedrich Schiller",
+  "dateOfBirth" : "1759-11-10",
+  "dateOfDeath" : "1805-05-09",
+  "epoch" :  { "ID": 120}
 }

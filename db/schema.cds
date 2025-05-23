@@ -25,7 +25,7 @@ type Price {
 
 
 // Define Entities--> 
-entity Epoches : CodeList {
+entity Epochs : CodeList {
     key ID          : Integer;
 };
 
@@ -43,7 +43,7 @@ entity Authors : cuid, managed{ @mandatory
         name        : String(100);
         dateOfBirth : Date;
         dateOfDeath : Date;
-        epoch       : Association to Epoches @assert.target;
+        epoch       : Association to Epochs @assert.target;
         books       : Association to many Books 
                         on books.author = $self;
 
