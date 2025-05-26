@@ -7,7 +7,7 @@
   "private": true,
   "dependencies": {
     "@cap-js/hana": "^1.9.0",
-    "@sap/cds": "^8",
+    "@sap/cds": "^8.9.4",
     "@sap/cds-hana": "^2.0.0",
     "express": "^4.21.2"
   },
@@ -23,8 +23,8 @@
       "native_hana_associations": false
     },
     "requires": {
-      "db" :{ 
-        "[development]":"sqlite",
+      "db": {
+        "[development]": "sqlite",
         "credentials": {
           "url": ":memory"
         }
@@ -39,8 +39,8 @@
             ]
           }
         },
-        "catuser":{
-          "password":"abcd1234"
+        "catuser": {
+          "password": "abcd1234"
         }
       }
     }
