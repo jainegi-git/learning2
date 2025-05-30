@@ -9,5 +9,10 @@
     // "tsv"
   ],
   "SAP HANA Database Explorer.ShowXsAdvancedConnections": true,
-  "SAP HANA Database Explorer.UseObjectsDefinitionForSqlGeneration.RetentionTime": 7
+  "SAP HANA Database Explorer.UseObjectsDefinitionForSqlGeneration.RetentionTime": 7,
+  "githubPullRequests.remotes": [
+    "origin",
+    "upstream",
+    "ykgw"
+  ]
 }
